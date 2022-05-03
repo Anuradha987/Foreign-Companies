@@ -36,57 +36,21 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            
-                            <!-- <form class="user">
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="First Name">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Last Name">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email Address">
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
-                                    </div>
-                                </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                    Register Account
-                                </a>
-                                <hr>
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a>
-                            </form> -->
 
-                            <form class="user">
+                            <form class="user" id="registerationForm">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="companyName"
+                                    <input type="text" class="form-control form-control-user" id="companyName" name="companyName"
                                         placeholder="Company Name">
+                                    <input type="hidden" id="action" value="register" hidden="">
                                 </div>
                                 <div class="form-group row">                                    
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="username"
+                                        <input type="text" class="form-control form-control-user" id="username" name="username"
                                             placeholder="Username">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="Password" placeholder="Password">
+                                        <input type="password" class="form-control form-control-user" name="password"
+                                            id="password" placeholder="Password">
                                     </div>
                                 </div>
 
@@ -136,13 +100,13 @@
                                   
                                   
                                       var lat = marker.getPosition().lat();
-                                      var long = marker.getPosition().lng();
+                                      var lng = marker.getPosition().lng();
                                   
                                       console.log( lat );
-                                      console.log( long );
+                                      console.log( lng );
                                   
-                                      document.getElementById("latitude").value = lat;
-                                      document.getElementById("loge").value = long;
+                                      document.getElementById("lat").value = lat;
+                                      document.getElementById("lng").value = lng;
                                   
                                     });
                                   }
@@ -150,21 +114,25 @@
 
                                 <div class="form-group row">                                    
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="latitude" name="lat"
+                                        <input type="text" class="form-control form-control-user" id="lat" name="lat"
                                             placeholder="Latitude">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user"
-                                        id="loge"  name="lng" placeholder="Longitude">
+                                        id="lng"  name="lng" placeholder="Longitude">
                                     </div>
                                 </div>
 
-                                <a href="login.php" class="btn btn-primary btn-user btn-block">
-                                    Register Account
-                                </a>
+                                <div><input type="hidden" name ="crud_req" value="register"></div>
+                                <input type="submit"  id="registerBtn" value="Register Company" class="btn btn-primary btn-user btn-block">
                                 
                             </form>
 
+                            <!-- <div id= "error-message" class="message"></div>
+                            <div id= "success-message" class="message"></div>  -->
+                            <div id= "error-message" class="message alert alert-danger" role="alert"></div>
+                            <div id= "success-message" class="message alert alert-success" role="alert"></div>
+                                
                             <hr>
                             <div class="text-center">
                                 <a class="small" href="forgot-password.html">Forgot Password?</a>
@@ -191,5 +159,68 @@
     <script src="js/sb-admin-2.min.js"></script>
 
 </body>
+
+<script type="text/javascript">
+    
+$(document).ready(function(){
+
+    //show success or error message
+    function message(message, status){
+    if(status == true){
+      $("#success-message").html(message).slideDown();
+      $("#error-message").slideUp();
+      setTimeout(function(){
+        $("#success-message").slideUp();
+      },4000);
+
+    }else if(status == false){
+      $("#error-message").html(message).slideDown();
+      $("#success-message").slideUp();
+      setTimeout(function(){
+        $("#error-message").slideUp();
+      },4000);
+    }
+  }
+
+    //function for converting form data to JSON Object
+    function jsonData(targetForm){        
+        var arr = $(targetForm).serializeArray();
+        var obj ={};
+        for(var a= 0; a < arr.length; a++){
+            if(arr[a].value == ""){
+                return false;
+            }
+            obj[arr[a].name] = arr[a].value;
+        }
+        var json_string = JSON.stringify(obj);
+        return json_string;
+    }
+
+    //register new company. insert data. 
+    $("#registerBtn").on("click",function(e){
+    e.preventDefault();
+    var jsonObj = jsonData("#registerationForm");
+    if( jsonObj == false){
+      message("All Fields are required.",false);
+    }else{
+      $.ajax({ 
+      url : 'http://localhost/apicopy/foreign_backend/insert.php',
+      type : "POST",
+      data : jsonObj,
+      success : function(data){
+        message(data.message, data.status);
+       
+        if(data.status == true){
+        //   $("#registerationForm").trigger("reset");
+        location.href = "./index.php"
+         }
+      }
+    });
+   }
+  });
+
+  
+})
+</script>
 
 </html>
