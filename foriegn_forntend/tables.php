@@ -38,9 +38,8 @@
                         </select>
 
                     </div>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
+                    <p class="mb-4">Discover skillful and talented people from all around in Sri Lanka. 
+                      Hire new people according to your expectations, job titles, roles, experienses, and qualifications to your company.</p>
                             
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -138,16 +137,16 @@
 
                     <div class="form-group">
                          <label for="exampleFormControlFile1">CV</label>
-                        <a href="visualize.php?id=c_id?>"> <input type="text" name="cv" id="edit-cv" class="form-control"> </a>
+                        <a href="../foreign_backend/visualize.php"> <input type="text" name="cv" id="edit-cv" class="form-control"> </a>
                     </div>
                     
                     <div class="form-group">
                          <label for="exampleFormControlFile1">Cover Latter</label>
-                         <input type="text" name="coverletter" id="edit-coverletter" class="form-control">
+                         <a href="../foreign_backend/visualize.php"><input type="text" name="coverletter" id="edit-coverletter" class="form-control"></a>
                     </div>
                     <div class="form-group">
                          <label for="exampleFormControlFile1">Certificates & Other Documents</label>
-                         <input type="text" name="certifi" id="edit-certifi" class="form-control">
+                         <a href="../foreign_backend/visualize.php"><input type="text" name="certifi" id="edit-certifi" class="form-control"></a>
                     </div>
         </form>
       </div>

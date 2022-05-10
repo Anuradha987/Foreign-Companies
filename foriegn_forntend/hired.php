@@ -2,7 +2,12 @@
 include('includes/header.php'); 
 include('includes/navbar.php'); 
 ?>
-
+<?php
+if(isset($_SESSION["id"])){
+    $id = $_SESSION["id"];
+    $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM foreign_companies WHERE fc_id = $id"));
+}
+?>
 
 
         <!-- Content Wrapper -->
@@ -86,7 +91,7 @@ include('includes/navbar.php');
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user["companyName"];?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -106,7 +111,7 @@ include('includes/navbar.php');
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="../foreign_backend/logout.php" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>

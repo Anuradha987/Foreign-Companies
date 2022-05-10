@@ -13,17 +13,6 @@
                         <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Hired Employees</h1>
-                       
-                        <!-- <script>
-                            function getUniqueValuesFromColumn(){
-                                var unique_col_values_dict = {}
-                                allFilters = document.querySelectorAll(".table-filter")
-                                allFilters.forEach(filter_i =>{
-                                    col_index = filter_i.parentelement.innerHTML;
-                                    alert(col_index)
-                                })
-                            }
-                        </script> -->
 
                         <select id="SelectOptions" class="btn btn-primary dropdown-toggle table-filter">
                           <option selected="selected" disabled="">Select the qualification</option>
@@ -38,9 +27,7 @@
                         </select>
 
                     </div>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
+                    <p class="mb-4">See the list of employees hired to your company. View their information. </p>
                             
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -138,20 +125,18 @@
 
                     <div class="form-group">
                          <label for="exampleFormControlFile1">CV</label>
-                         <input type="file" name="cv" class="form-control-file" id="edit-cv exampleFormControlFile1">
-                         <input type="hidden" name="MAX_FILE_SIZE" value="67108864"/> 
+                        <a href="visualize.php?id=c_id?>"> <input type="text" name="cv" id="edit-cv" class="form-control"> </a>
                     </div>
                     
                     <div class="form-group">
                          <label for="exampleFormControlFile1">Cover Latter</label>
-                         <input type="file" name="clatter" class="form-control-file" accept=".pdf" id="edit-coverletter exampleFormControlFile1">
-                         <input type="hidden" name="MAX_FILE_SIZE" value="67108864"/>
+                         <input type="text" name="coverletter" id="edit-coverletter" class="form-control">
                     </div>
                     <div class="form-group">
                          <label for="exampleFormControlFile1">Certificates & Other Documents</label>
-                         <input type="file" name="documents" class="form-control-file" id="edit-otherDocs exampleFormControlFile1" multiple>
-                         <input type="hidden" name="MAX_FILE_SIZE" value="16777215"/>
+                         <input type="text" name="certifi" id="edit-certifi" class="form-control">
                     </div>
+                   
         </form>
       </div>
       <div class="modal-footer">
@@ -220,6 +205,9 @@ $(document).on("click",".edit-btn",function(){
         $("#edit-lng").val(data[0].c_longitude);
         $("#edit-profession").val(data[0].c_profession);
         $("#edit-highEdu").val(data[0].e_name);
+        $("#edit-cv").val(data[0].cv_filename);
+        $("#edit-coverletter").val(data[0].coverletter_filename);
+        $("#edit-certifi").val(data[0].certifi_filename);
       }
     });
 

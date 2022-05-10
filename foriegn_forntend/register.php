@@ -1,3 +1,9 @@
+<?php 
+// if(isset($_SESSION["id"])){
+//   header ('Location: ./index.php');
+// }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
+    <title>Bureau - Foriegn</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,7 +36,9 @@
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-5 d-none d-lg-block ">
+                    <img src="http://relibion.in/images/Logo/signup-page.png" style="object-fit: cover; height:760px; width:530px; margin-top:60px;">
+                    </div>
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
@@ -128,8 +136,6 @@
                                 
                             </form>
 
-                            <!-- <div id= "error-message" class="message"></div>
-                            <div id= "success-message" class="message"></div>  -->
                             <div id= "error-message" class="message alert alert-danger" role="alert"></div>
                             <div id= "success-message" class="message alert alert-success" role="alert"></div>
                                 

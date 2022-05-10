@@ -1,6 +1,5 @@
 <?php
-session_start();
-if(isset($_SESSION["name"])){
+if(isset($_SESSION["id"])){
     header("Location: ./index.php");
 }
 ?>
@@ -15,7 +14,7 @@ if(isset($_SESSION["name"])){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>Bureau - Foriegn</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,7 +39,9 @@ if(isset($_SESSION["name"])){
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6 d-none d-lg-block">
+                            <img src="https://media.istockphoto.com/vectors/international-migration-abstract-concept-vector-illustration-vector-id1274747986?k=20&m=1274747986&s=612x612&w=0&h=bIoDIdvKO-gGgLdBOpLM_KH7Q46lUCxxSC2AAqLFAK4=" style="background-size: cover; margin-left: -60px;">
+                            </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
@@ -66,7 +67,7 @@ if(isset($_SESSION["name"])){
                                                 <label class="custom-control-label" for="customCheck">Remember Me</label>
                                             </div>
                                         </div>
-                                        <input class="btn btn-primary btn-user btn-block" id="loginBtn" type="submit" name="loginBtn" value="Login"> 
+                                        <input class="btn btn-primary btn-user btn-block" onclick="submitData();" id="loginBtn" type="submit" name="loginBtn" value="Login"> 
                                     </form>
 
                                     <hr>
@@ -104,100 +105,36 @@ if(isset($_SESSION["name"])){
 
 </body>
 
-<!-- ajax for the method 2 login.php backend -->
+
 
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 </script>
 
 <script type="text/javascript">
 
-// function submitData(){
-//     $(document).ready(function(){
-//       var data = {
-//         username: $("#username").val(),
-//         password: $("#password").val(),
-//         action: $("#action").val(),
-//       };
-// $.ajax({
-//         url: 'http://localhost/apicopy/foreign_backend/login.php',
-//         type: 'post',
-//         data: data,
-//         success:function(response){
-//           alert(response);
-//           if(response == "Login Successful"){
-//             window.location.reload();
-//           }
-//         }
-//       });
-//     });
-//   }
+function submitData(){
 
-</script>
+$(document).ready(function(){
 
-
-<!-- 3rd method.  -->
-<script type="text/javascript">
-
-// function submitData(){
-
-// $(document).ready(function(){
-// //     window.alert("sometext");
-// // //show success or error message
-// function message(message, status){
-// if(status == true){
-//   $("#success-message").html(message).slideDown();
-//   $("#error-message").slideUp();
-//   setTimeout(function(){
-//     $("#success-message").slideUp();
-//   },4000);
-
-// }else if(status == false){
-//   $("#error-message").html(message).slideDown();
-//   $("#success-message").slideUp();
-//   setTimeout(function(){
-//     $("#error-message").slideUp();
-//   },4000);
-// }
-// }
-
-//function for converting form data to JSON Object
-// function jsonData(targetForm){        
-//     var arr = $(targetForm).serializeArray();
-//     var obj ={};
-//     for(var a= 0; a < arr.length; a++){
-//         if(arr[a].value == ""){
-//             return false;
-//         }
-//         obj[arr[a].name] = arr[a].value;
-//     }
-//     var json_string = JSON.stringify(obj);
-//     return json_string;
-// }
-
-
-    // var data ={
-    //     username: $('#username').val(), 
-    //     password: $('#password').val(), 
-    //     action: $('#action').val(),
-    // };
-    // $.ajax({
-    //     url:'http://localhost/apicopy/foreign_backend/login.php',
-    //     type:'POST', 
-    //     data : jsonObj,
-    //     success : function(data){
-    //         message(data.message, data.status);
-    //         alert(response);
-    //         if(data.status == true){
-    //             location.href = "./index.php"
-    //         }
-    //     }
-    // })
-
-        
-
-// })
-
-// };
+    var data ={
+        username: $('#username').val(), 
+        password: $('#password').val(), 
+        // action: $('#action').val(),
+    };
+    $.ajax({
+        url:'http://localhost/apicopy/foreign_backend/login.php',
+        type:'POST', 
+        data : jsonObj,
+        success : function(data){
+            message(data.message, data.status);
+            alert(response);
+            if(data.status == true){
+                location.href = "./index.php"
+            }
+        }
+    })
+})
+};
 </script>
 
 </html>

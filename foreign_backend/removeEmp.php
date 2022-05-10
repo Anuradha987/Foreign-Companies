@@ -8,9 +8,7 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,
 $data = json_decode(file_get_contents("php://input"), true);
 
 $id = $data['id'];
-// $affiliation = $data['affiliation'];
-// $nic = $data['nic'];
-$affiliation = 2; 
+
 
 include "config.php";
 

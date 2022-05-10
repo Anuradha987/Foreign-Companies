@@ -19,17 +19,17 @@ empty($lat) ||empty($lng)){
     exit();
 }
 
+session_start();
 
-// $passwordhash = password_hash($password, PASSWORD_DEFAULT); 
 $passwordhash = md5($password); 
 
 include "config.php";
 $sql = "Insert into foreign_companies (fc_name, fc_username, fc_password, fc_latitude, fc_longitude) values ('{$companyName}', '{$username}', '{$passwordhash}', '{$lat}', '{$lng}')";
 
 if(mysqli_query($conn, $sql)){
-    echo json_encode(array('message' => 'Record inserted successfully', 'status' => true));
+    echo json_encode(array('message' => 'Congratulations!. You have successfully registered.', 'status' => true));
 }
 else{
-    echo json_encode(array('message' => 'Record not inserted', 'status' => false));
+    echo json_encode(array('message' => 'Oops! Something went wrong', 'status' => false));
 }
 ?>
